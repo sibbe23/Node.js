@@ -81,8 +81,23 @@
 // })
 // server.listen(4000)
 
-const http = require('http');
-const routes = require('./routes')
-console.log(routes.someText)
-const server = http.createServer(routes.handler)
-server.listen(5000)
+// const http = require('http');
+// const routes = require('./routes')
+// console.log(routes.someText)
+// const server = http.createServer(routes.handler)
+// server.listen(5000)
+
+
+const express = require('express')
+const app = express();
+
+app.use((req,res,next)=>{
+    console.log("This is Middleware")
+    next();
+})
+
+app.use((req,res,next)=>{
+    console.log("This is 2nd Middleware")
+    res.send({ key1: 'value' })
+})
+app.listen(5000)
